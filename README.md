@@ -5,5 +5,4 @@ p-hentai
 *fullimg是同步下载,不需要nginx*  
 __linkall.py 是连图功能待完善,暂未完成__  
 **getfullimg.py 通过e-hentai/s/[0-9]\*页面的链接获取相册的全部原图链接**  
-***fullimg1.py 遍历fullimg.txt进行原图下载，需要代理需要使用https://github.com/17827757663/nginx-1.27.2***  
-[nginx](https://github.com/17827757663/nginx-1.27.2)
+***fullimg1.py 遍历fullimg.txt进行原图下载，需要[代理](https://github.com/17827757663/nginx-1.27.2)***  
