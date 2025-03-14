@@ -1,9 +1,5 @@
 
-<<<<<<< HEAD
-import socket,select,ssl,bs4,re,os,urllib.parse
-=======
-import socket,select,ssl,bs4,re,os,urllib.parse,linkall,threading
->>>>>>> 572b7d1 (第一次提交)
+import socket,ssl,re,urllib.parse
 
     #e-hentai.org 104.20.135.21
     #upld.e-hentai.org 94.100.18.249
@@ -25,15 +21,6 @@ class Prx:
     '''
     def __init__(self):
         pass
-<<<<<<< HEAD
-    result = os.popen('ifconfig').read()
-    st1 = result.find('inet',100)
-    ks = result[st1:].find(' ')+1
-    end = result[st1:].find('  ')
-    jg = result[st1:]
-    jywip = jg[ks:end]
-=======
->>>>>>> 572b7d1 (第一次提交)
 
 
     context = ssl.create_default_context(ssl.Purpose.SERVER_AUTH)
@@ -124,11 +111,7 @@ class Prx:
             try:
                 data = self.sockets.recv(4096).decode()
                 self.htmldata += data
-<<<<<<< HEAD
-                print(self.htmldata)
-=======
                 #print(self.htmldata)
->>>>>>> 572b7d1 (第一次提交)
             except Exception as e:
                 print(e)
             #open("pix/server/"+self.query+self.types,"ab").write(data)
@@ -138,20 +121,6 @@ class Prx:
                 break
                 
         print("开始保存文件","  "+self.query+self.types)
-<<<<<<< HEAD
-        try:
-            s,t,d,i = linkall.getstartatend(dat=self.htmldata.encode())
-            if(type(t) is int):
-                print('t  ',t)
-                df = self.filesdata.decode('utf-8')
-                open('./server/url.txt',"ab").write(b"https://e-hentai.org"+self.fillesdir.encode('utf-8')+b'\r\n')
-                print(i.split('"')[3])      
-                open("./server/img/url.txt","ab").write(i.split('"')[3].encode("utf-8")+b"\r\n")
-                threading.Thread(target=linkall.main,args=df).start()
-        except:
-            pass
-        '''
-=======
         '''
         try:
             s,t,d,i = linkall.getstartatend(dat=self.htmldata.encode())
@@ -167,22 +136,12 @@ class Prx:
             pass
         '''
         '''
->>>>>>> 572b7d1 (第一次提交)
         self.dats = open("pix/server/"+self.query+self.types,"rb").read()
         da = self.dats.decode("utf-8")
         self.fenk = da.split(" ")
         #threading.Thread(target=self.download).start()
         '''
         da = self.htmldata
-<<<<<<< HEAD
-        #.decode("utf-8")
-        da = re.sub(r'<script async src="//adserver.juicyads.com/js/jads.js"></script>', '', da, flags=re.S)
-        self.fenk = da.split(" ")                        
-        dio = re.sub(r"https://"+self.hostname+r".*?/","http://"+self.__localhost+":8000/",da)
-    
-        dio = re.sub(r"https://"+self.__localhost+":8000/z/0372/g.css","http://"+self.__localhost+":8000/g.css",dio)
-        dio = re.sub(r"https://"+self.__localhost+":8000/z/0372/ehg_index.c.js","http://"+self.__localhost+":8000/ehg_index.c.js",dio)
-=======
         hts = "http://"
         #.decode("utf-8")
         da = re.sub(r'<script async src="//adserver.juicyads.com/js/jads.js"></script>', '', da, flags=re.S)
@@ -191,7 +150,6 @@ class Prx:
     
         dio = re.sub(r"https://"+self.__localhost+":8000/z/0372/g.css",hts+self.__localhost+":8000/g.css",dio)
         dio = re.sub(r"https://"+self.__localhost+":8000/z/0372/ehg_index.c.js",hts+self.__localhost+":8000/ehg_index.c.js",dio)
->>>>>>> 572b7d1 (第一次提交)
         dio = re.sub(r"https://ehgt.org",'https://eh.sduoi.top',dio)
         dio = re.sub(r'onerror(.*)?\(\)',"",dio)
         dio = re.sub(r'onload(.*)?\(\)',"",dio)
@@ -233,11 +191,7 @@ class Prx:
                     #break
 
             except:
-<<<<<<< HEAD
-                print(self.dats[0:100])
-=======
                 #print(self.dats[0:100])
->>>>>>> 572b7d1 (第一次提交)
                 del cs[len(cs)-1]
             #print(self.dats)
 
