@@ -1,4 +1,4 @@
-import bs4,thrdli,re,time,asyncio,threading,queue,random,threading,concurrent.futures,requests
+import bs4,thrdli,time,threading,threading
 
 #markups = '<!DOCTYPE html>\r\n<html lang="en">\r\n<head>\r\n<meta charset="utf-8" />\r\n<link rel="stylesheet" type="text/css" href="https://127.0.0.1:8000/g.css" /></head><body>\r\n<script type="text/javascript">\r\nfunction popUp(URL,w,h) {window.open(URL,"_pu"+(Math.random()+"").replace(/0\./,""),"toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width="+w+",height="+h+",left="+((screen.width-w)/2)+",top="+((screen.height-h)/2));return false;}\r\n</script>\r\n</body>\r\n</html>'
 markups = '<!DOCTYPE html>\r\n<html lang="en">\r\n<head>\r\n<script>\r\n\r\nfunction load() {\r\nvar xhl =new XMLHttpRequest();\r\nxhl.open("GET","http://127.0.0.1:8000/cs",true);\r\nxhl.send();\r\nxhl.onreadystatechange = function() {\r\nconsole.log(xhl.response)\r\ndocument.body.innerHTML = xhl.response\r\n}\r\n\r\n}\r\nwindow.setInterval(load,20000);\r\n</script>\r\n<meta charset="utf-8" />\r\n<link rel="stylesheet" type="text/css" href="http://127.0.0.1:8000/g.css" />\r\n</head>\r\n<body>\r\n</body>\r\n</html>'

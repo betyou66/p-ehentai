@@ -1,4 +1,4 @@
-import socket,lxs,os,asyncio,requests,re,aiohttp,aiofiles
+import os,asyncio,aiohttp,aiofiles
 #使用异步
 #使用多线程的差别
 
