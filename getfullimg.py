@@ -5,7 +5,7 @@ id=next
 '''
 img = set()
 allurl = dict()
-url = 'https://e-hentai.org/s/8b2ce3b89b/3245956-1'
+url = 'https://e-hentai.org/s/e3cf19ac4a/3244018-1'
 shual = 0
 import asyncio,re,aiohttp
 async def downhtml(session):
