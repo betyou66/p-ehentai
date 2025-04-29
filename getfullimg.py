@@ -5,7 +5,9 @@ id=next
 '''
 img = set()
 allurl = dict()
-url = 'https://e-hentai.org/s/e3cf19ac4a/3244018-1'
+
+url = input()
+print(url)
 shual = 0
 import asyncio,re,aiohttp
 async def downhtml(session):
@@ -26,7 +28,7 @@ async def downhtml(session):
         #allurl[1] = next
         allurl.update({url:status})
         url = next
-    
+
         return full,next
     except:
         next = re.search(r'(<a id="next")(.*?)>',data.decode()).group(0).split(' ')[-1].split('=')[-1].split('>')[0].split('"')[1]
@@ -37,14 +39,14 @@ async def downhtml(session):
         allurl.update({url:status})
         url = next
         full = False
-    
+
         return full,next
         pass
 async def main():
     global shual
     session = aiohttp.ClientSession()
     i,u = await downhtml(session)
- 
+
     for i in range(shual):
         i,u = await downhtml(session)
     await session.close()
