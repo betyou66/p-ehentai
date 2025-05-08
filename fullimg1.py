@@ -9,24 +9,21 @@ def downloadimg(url,name,dirs):
     wjj = dirs
 
     try:
-        img = requests.get(url,verify=False)
+        img = requests.get(url)
         try:
-            os.mkdir('./'+wjj)
+            os.mkdir('../ehimg/'+wjj)
         except:
             pass
-        with open(f'./{wjj}/{name}','wb') as w:
+        with open(f'../ehimg/{wjj}/{name}','wb') as w:
             w.write(img.content)
             w.close()
 
     except Exception as e:
-        print(img)
-        #pdb.set_trace()
-        #breakpoint()
         print(e)
     finally:
         print(img.status_code)
 
-async def request():
+def request():
     with open('./fullimg.txt','rb') as d:
         j = d.read().decode('utf-8').split('"')
         url = [i for i in j if('https' in i)]
@@ -39,7 +36,7 @@ async def request():
             names,urls,dirs = fa.sends()
             task = threading.Thread(target=downloadimg,args=(urls,names,dirs,))
             task.start()
-
+            time.sleep(random.randint(3,5))
             print(urls,dirs)
     except Exception as e:
         print(e)
@@ -50,4 +47,4 @@ async def request():
 
 
 
-asyncio.run(request())
+request()
