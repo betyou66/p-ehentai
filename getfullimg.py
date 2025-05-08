@@ -9,7 +9,7 @@ allurl = dict()
 url = input()
 print(url)
 shual = 0
-import asyncio,re,aiohttp
+import asyncio,re,aiohttp,random,requests,threading
 async def downhtml(session):
     global allurl,url,shual
     header = {'Connection':'keep-alive'}
