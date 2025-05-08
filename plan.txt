@@ -1,0 +1,1 @@
+将getfullimg.py改造成gerenator,功能是生成一个链接

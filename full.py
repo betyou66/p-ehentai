@@ -99,7 +99,7 @@ class Prx:
 
                 #print(data.encode())
                 self.htmldata += data
-                print(self.htmldata.decode())
+                #print(self.htmldata.decode())
                 self.htmldata = self.htmldata.split(b'\r\n')[7].split(b': ')[1].decode()
 
                 break

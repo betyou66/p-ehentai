@@ -1,4 +1,4 @@
-import os,asyncio,queue,pdb,full,random,requests,threading
+import os,asyncio,queue,pdb,full,random,requests,threading,getfullimg
 #使用异步
 #使用多线程的差别
 
@@ -21,16 +21,19 @@ def downloadimg(url,name,dirs):
     except Exception as e:
         print(e)
     finally:
-        print(img.status_code)
+        img.close()
+        pass
+        #print(img.status_code)
 
 def request():
-    with open('./fullimg.txt','rb') as d:
-        j = d.read().decode('utf-8').split('"')
-        url = [i for i in j if('https' in i)]
-    Trueimage = []
-    import time
+    #with open('./fullimg.txt','rb') as d:
+    #    j = d.read().decode('utf-8').split('"')
+    #    url = [i for i in j if('https' in i)]
+    #Trueimage = []
     try:
-        for i in url:
+        startimg = getfullimg.main()
+
+        for i in startimg:
             fa = full.Prx(i,'104.20.19.168',{})
             fa.pase()
             names,urls,dirs = fa.sends()
@@ -39,6 +42,7 @@ def request():
             time.sleep(random.randint(3,5))
             print(urls,dirs)
     except Exception as e:
+        task.join()
         print(e)
     finally:
         with open('./fullimg.txt','wb') as w:
