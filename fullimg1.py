@@ -21,7 +21,11 @@ def downloadimg(url,name,dirs):
     except Exception as e:
         print(e)
     finally:
-        img.close()
+        print('close')
+        try:
+            img.close()
+        except:
+            pass
         pass
         #print(img.status_code)
 
@@ -34,20 +38,25 @@ def request():
         startimg = getfullimg.main()
 
         for i in startimg:
+            print(i)
+            #breakpoint()
             fa = full.Prx(i,'104.20.19.168',{})
             fa.pase()
             names,urls,dirs = fa.sends()
+            #breakpoint()
+            print(names,urls,dirs)
             task = threading.Thread(target=downloadimg,args=(urls,names,dirs,))
             task.start()
-            time.sleep(random.randint(3,5))
-            print(urls,dirs)
+            #time.sleep(random.randint(3,5))
+            #print(urls,dirs)
     except Exception as e:
         task.join()
         print(e)
     finally:
-        with open('./fullimg.txt','wb') as w:
-            w.write(b'')
-            w.close()
+        print('执行完毕 %s' % urls)
+        #with open('./fullimg.txt','wb') as w:
+        #    w.write(b'')
+        #    w.close()
 
 
 

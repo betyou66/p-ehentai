@@ -1,13 +1,5 @@
 
 import socket,ssl,re,urllib.parse,requests
-
-    #e-hentai.org 104.20.135.21
-    #upld.e-hentai.org 94.100.18.249
-    #hentaiverse.org hentaiverse.org
-    #forums.e-hentai.org 104.20.135.21
-    #ehgt.org 178.162.139.24
-    #await sends("e-hentai.org","/")
-
 class Prx:
     '''
     这个类可以通过连接ip发送底层请求，如果ip没有被封禁
@@ -100,6 +92,9 @@ class Prx:
                 #print(data.encode())
                 self.htmldata += data
                 #print(self.htmldata.decode())
+                if(b'Transfer-Encoding: chunked' in self.htmldata):
+                    jm = self.htmldata.split(b'/r/n/r/n')
+                    print(jm)
                 self.htmldata = self.htmldata.split(b'\r\n')[7].split(b': ')[1].decode()
 
                 break
@@ -129,11 +124,9 @@ class Prx:
 
             ss = self.context.wrap_socket(s,server_hostname=self.target_ip)
             ck = 'Cookie: ipb_member_id=4522602; ipb_pass_hash=a467850bb2d0fed80627d64931dcf99c; sk=bp8w6rdgmeci934fp919r6m7zp99;'
-            cks = ['Cookie: ipb_member_id=7498513; ipb_pass_hash=e36bf990b97f805acb2dd5588440c203; sk=nf32h71b404ktqkgsgq2qgozdcfc;','Cookie: ipb_member_id=5191636; ipb_pass_hash=544b6a81f07d356f3753032183d1fdfb; sk=9cqnaiva7o3feybrrs2qk8feawhn;','Cookie: ipb_member_id=7317440; ipb_pass_hash=dbba714316273efe9198992d40a20172; sk=l4j3radd014zrmdxr2lxpn1mwhwx;']
             if('fullimg' in self.path):
-                sends=f'''GET {self.path} HTTP/1.1\r\nHost: e-hentai.org\r\nUser-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\r\nAccept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\r\nAccept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nConnection: keep-alive\r\n{ck}\r\nUpgrade-Insecure-Requests: 1\r\nSec-Fetch-Dest: document\r\nSec-Fetch-Mode: navigate\r\nSec-Fetch-Site: cross-site\r\nSec-Fetch-User: ?1\r\nPriority: u=4\r\nPragma: no-cache\r\nCache-Control: no-cache\r\n\r\n'''
-            else:
-                sends=f'''GET {self.path} HTTP/1.1\r\nHost: e-hentai.org\r\nUser-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\r\nAccept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\r\nAccept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nConnection: keep-alive\r\nUpgrade-Insecure-Requests: 1\r\nSec-Fetch-Dest: document\r\nSec-Fetch-Mode: navigate\r\nSec-Fetch-Site: cross-site\r\nSec-Fetch-User: ?1\r\nPriority: u=4\r\nPragma: no-cache\r\nCache-Control: no-cache\r\n\r\n'''
+                print('fullimg')
+                sends=f'''GET {self.path} HTTP/1.1\r\nHost: e-hentai.org\r\nUser-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\r\nAccept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\r\nAccept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nConnection: keep-alive\r\n{ck}\r\nUpgrade-Insecure-Requests: 1\r\nSec-Fetch-Dest: document\r\nSec-Fetch-Mode: navigate\r\nSec-Fetch-Site: cross-site\r\nSec-Fetch-User: ?1\r\nPriority: u=4\r\nReferer: https://forums.e-hentai.org/\r\nPragma: no-cache\r\nCache-Control: no-cache\r\n\r\n'''
 
 
 
@@ -147,7 +140,7 @@ class Prx:
 
 
 
-#p = Prx('https://e-hentai.org/fullimg/3249396/1/4meyyjzaedm/_001.png','104.20.19.168',{})
+#p = Prx('https://e-hentai.org/fullimg/3104091/1/fhh3n79aee4/a_00.png','104.20.19.168',{})
 #p.pase()
 #print(p.sends())
 

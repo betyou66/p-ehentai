@@ -15,7 +15,7 @@ def downhtml():
     request = requests.get(url,verify='/home/kali/nginx/ca.crt',headers=header)
     data = request.text
     status = request.status_code
-    proxy = '"https://cs.sduoi.top/'
+    proxy = 'https://cs.sduoi.top/'
     try:
         full = re.search(r'(?<=e-hentai.org)/fullimg(.*?)"',data).group(0)
         img = 'https://e-hentai.org'+full.split('"')[0]
@@ -34,6 +34,8 @@ def downhtml():
 
         return full,next
         pass
+    finally:
+        request.close()
 def main():
     global shual,img
     i,u = downhtml()
