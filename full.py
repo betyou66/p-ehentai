@@ -1,4 +1,3 @@
-
 import socket,ssl,re,urllib.parse,requests
 class Prx:
     '''
@@ -6,20 +5,12 @@ class Prx:
     :param hostname: 域名
     :param path: 查询路径
     :param dats: 接收的数据以字节形式返回
-    :param query 保存文件名
-    :param types: 保存文件类型
-    :param docunetpool 文档名
-    :param recursionget 递归文档
     '''
     def __init__(self,url:str,target_ip:str,headers:dict):
         self.url = url
-        self.__localhost = '127.0.0.1'
         self.path = '/'
-        self.dats = b''
-        self.query = ''
-        self.types = ''
         self.sockets = ''
-        self.docunetpool = []
+        self.htmldata = b''
         self.target_ip = target_ip
         #ssl certificate
         self.context = ssl.create_default_context(ssl.Purpose.SERVER_AUTH)
@@ -29,95 +20,30 @@ class Prx:
         self.context.check_hostname = False
         self.context.set_alpn_protocols(["http/1.1","spdy/2",'TLS/1.2'])
         self.context.keylog_filename = "./key.log"
-        self.fenk = ""
         self.__localhost = '127.0.0.1'
         self.headers=headers
-        self._mg = ''
-        self.sou_addr = ''
-        self.htmldata = b''
     #自定义客户端ip
 
     def __doc__(self):
-        print("e-hentai.org 104.20.135.21")
-        print("upld.e-hentai.org 94.100.18.249")
-        print("hentaiverse.org hentaiverse.org")
+        pass
     def pase(self):
-        '''
-        解析url
-        '''
-
-        try:
-            result = re.findall(r'([^://]+)',self.url)
-            self.hostname = result[1]
-            del result[0]
-            del result[0]
-            fuzhi = result[len(result)-1]
-            if(re.search(r"\?",fuzhi)):
-                u = re.search(r"=",result[len(result)-1])
-                fuzhi = fuzhi.split("=")
-                if(re.search(r"\%",fuzhi[1])==None):
-                    self.query = fuzhi[1]
-                else:
-                    self.query = urllib.parse.unquote(fuzhi[1])
-            else:
-                fge = fuzhi.split(".").pop()
-                tio = fuzhi.split("."+fge)
-                if(len(tio)<1):
-                    self.query=tio.join("")
-                else:
-                    self.query = tio[0]
-            if(re.search(r"\.",result[len(result)-1])==None):
-                self.types = ".html"
-            else:
-                ts = re.findall(r"[^\.]+",result[len(result)-1])
-                self.types ='.'+ts[len(ts)-1]
-
-            self.path = "/"+"/".join(result)
-            if(type(self.hostname)!=str):
-                TypeError("hostname must be str")
-
-        except:
-            self.query = "index"
+        self.path = self.url.split('//')[1].split('/')
+        self.path =  '/'+'/'.join(self.path[1:len(self.path)])
+        print(self.path)
 
 
     def data(self):
-        '''
-        处理数据
-        '''
         while True:
             try:
-
                 data = self.sockets.recv(4096)
-
-                #print(data.encode())
                 self.htmldata += data
-                #print(self.htmldata.decode())
-                if(b'Transfer-Encoding: chunked' in self.htmldata):
-                    jm = self.htmldata.split(b'/r/n/r/n')
-                    print(jm)
                 self.htmldata = self.htmldata.split(b'\r\n')[7].split(b': ')[1].decode()
-
                 break
-
             except Exception as e:
                 print(e)
                 break
         return self.htmldata
-        #数据类型
-
-
     def sends(self):
-
-
-
-        '''
-        发送请求
-        两个return
-
- 文件名和文件数据
-        '''
-
-
         if(self.target_ip!=None):
             print('None')
             s = socket.create_connection((self.target_ip,443))
@@ -136,7 +62,7 @@ class Prx:
             dli = self.data()
             ss.close()
             dirs = self.url.split('/')[-4]
-            return self.query+self.types,dli,dirs
+            return self.url.split('/')[-1],dli,dirs
 
 
 
@@ -144,4 +70,3 @@ class Prx:
 #p.pase()
 #print(p.sends())
 
-#asyncio.run(cs.sends())

@@ -38,7 +38,8 @@ def request():
         startimg = getfullimg.main()
 
         for i in startimg:
-            print(i)
+            if(i==''):
+                continue
             #breakpoint()
             fa = full.Prx(i,'104.20.19.168',{})
             fa.pase()
