@@ -46,6 +46,12 @@ def request():
             names,urls,dirs = fa.sends()
             #breakpoint()
             print(names,urls,dirs)
+            if('jpg' in urls or 'png' in urls):
+                print(True)
+            else:
+                print('GP has been used up')
+                break
+            breakpoint()
             task = threading.Thread(target=downloadimg,args=(urls,names,dirs,))
             task.start()
             #time.sleep(random.randint(3,5))
