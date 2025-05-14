@@ -22,6 +22,8 @@ def downhtml():
         next = re.search(r'(<a id="next")(.*?)>',data).group(0).split(' ')[-1].split('=')[-1].split('>')[0].split('"')[1]
         shual = int(re.findall(r"(<span>(.*?)</span>)",data)[1][1])-1
         allurl.update({url:status})
+        if(next==url):
+            raise ValueError('重复')
         url = next
 
         return full,next
@@ -29,6 +31,8 @@ def downhtml():
         next = re.search(r'(<a id="next")(.*?)>',data).group(0).split(' ')[-1].split('=')[-1].split('>')[0].split('"')[1]
         shual = int(re.findall(r"(<span>(.*?)</span>)",data)[1][1])-1
         allurl.update({url:status})
+        if(next==url):
+            raise ValueError('重复')
         url = next
         full = False
 
